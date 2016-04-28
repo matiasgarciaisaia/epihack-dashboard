@@ -245,7 +245,7 @@
 				success: function(data) {
 					//On ajax success do this
 					$("#include_volunteers").get(0).form.reset();
-					//  sendPostToMbuilder(message);
+					sendPostToMbuilder(message);
 				},
 				error: function(data) {
 					console.log("failed: ", data);
