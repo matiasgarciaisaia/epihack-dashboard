@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Midwive Info Map</title>
+<script src="jquery-1.10.2.js"></script>
+  <script src="jquery-ui.js"></script>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <link rel="stylesheet" href="style.css">
+<style>
+#texttitle{
+text-align: center;
+}
+#textsubtitle{
+text-align: center;
+}
+#imgBackground{
+	position: absolute;
+	top: 150px;
+    left: 350px;
+	height: 400px;
+    width: 400px;
+	border: 3px solid #73AD21;
+}
+#profile{
+	position: absolute;
+	top: 150px;
+    left: 150px;
+}
+
+
+
+
+#eachitem{
+	position: absolute;
+	top: 150px;
+    left: 850px;
+}
+#pinYangon{
+	position: absolute;
+	top: 380px;
+    left: 535px;
+	height: 20px;
+    width: 20px;
+}
+#divYangon{
+position: absolute;
+	top: 370px;
+    left: 540px;
+	font-size: 0.5em;
+}
+
+#pinBahan{
+	position: absolute;
+	top: 432px;
+    left: 510px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divBahan{
+position: absolute;
+	top: 422px;
+    left: 505px;
+	font-size: 0.5em;
+}
+#pinTamwe{
+	position: absolute;
+	top: 409px;
+    left: 537px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divTamwe{
+position: absolute;
+	top: 399px;
+    left: 532px;
+	font-size: 0.5em;
+}
+#pinYankin{
+	position: absolute;
+	top: 384px;
+    left: 520px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divYankin{
+position: absolute;
+	top: 374px;
+    left: 515px;
+	font-size: 0.5em;
+}
+
+
+#pinBahan_01_001{
+	position: absolute;
+	top: 432px;
+    left: 510px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divBahan_01_001{
+position: absolute;
+	top: 422px;
+    left: 505px;
+	font-size: 0.5em;
+}
+#pinBahan_02_001{
+	position: absolute;
+	top: 432px;
+    left: 630px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divBahan_02_001{
+position: absolute;
+	top: 422px;
+    left: 625px;
+	font-size: 0.5em;
+}
+#pinBahan_03_001{
+	position: absolute;
+	top: 352px;
+    left: 510px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divBahan_03_001{
+position: absolute;
+	top: 342px;
+    left: 505px;
+	font-size: 0.5em;
+}
+
+
+#pinTamwe_01_001{
+	position: absolute;
+	top: 409px;
+    left: 537px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divTamwe_01_001{
+position: absolute;
+	top: 399px;
+    left: 532px;
+	font-size: 0.5em;
+}
+#pinTamwe_02_001{
+	position: absolute;
+	top: 409px;
+    left: 537px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divTamwe_02_001{
+position: absolute;
+	top: 399px;
+    left: 532px;
+	font-size: 0.5em;
+}
+#pinTamwe_03_001{
+	position: absolute;
+	top: 409px;
+    left: 537px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divTamwe_03_001{
+position: absolute;
+	top: 399px;
+    left: 532px;
+	font-size: 0.5em;
+}
+
+
+#pinYankin_01_001{
+	position: absolute;
+	top: 384px;
+    left: 520px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divYankin_01_001{
+position: absolute;
+	top: 374px;
+    left: 515px;
+	font-size: 0.5em;
+}
+#pinYankin_02_001{
+	position: absolute;
+	top: 384px;
+    left: 520px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divYankin_02_001{
+position: absolute;
+	top: 374px;
+    left: 515px;
+	font-size: 0.5em;
+}
+#pinYankin_03_001{
+	position: absolute;
+	top: 384px;
+    left: 520px;
+	height: 20px;
+    width: 20px;
+	background: url('pin.png');
+}
+#divYankin_03_001{
+position: absolute;
+	top: 374px;
+    left: 515px;
+	font-size: 0.5em;
+}
+</style>
+<script>
+$(function() {
+ 
+    $( "#pinBahan" ).draggable({
+      start: function() {
+
+      },
+      drag: function() {
+var obj =  $("#pinBahan");
+var position = obj.position();
+console.log("left:"+position.left+",top:"+position.top);
+      },
+      stop: function() {
+
+      }
+    });});
+  
+  $(function() {
+    $( "#profile2" ).dialog({
+		resizable: true,
+      height:100
+	});
+  });
+ 
+
+function hover(element) {
+$("#eachitem").show();
+	if(element.id=="pinYangon"){
+    element.setAttribute('src', 'pin2.png');
+	$("#eachitem").html("Quick Look<br/>Yangon Data....");
+	}
+	if(element.id=="pinBahan"){
+    element.setAttribute('src', 'pin2.png');
+	$("#eachitem").html("Quick Look<br/>Bahan Data....");
+	}
+	if(element.id=="pinTamwe"){
+    element.setAttribute('src', 'pin2.png');
+	$("#eachitem").html("Quick Look<br/>Tamwe Data....");
+	}
+	if(element.id=="pinYankin"){
+    element.setAttribute('src', 'pin2.png');
+	$("#eachitem").html("Quick Look<br/>Yankin Data....");
+	}
+	
+	if(element.id=="pinBahan_01_001"){
+    element.setAttribute('src', 'type1-2.png');
+	$("#eachitem").html("Quick Look<br/>Bahan: Center Type 1<br/>Center 1");
+	}
+	if(element.id=="pinBahan_02_001"){
+    element.setAttribute('src', 'type2-2.png');
+		$("#eachitem").html("Quick Look<br/>Bahan: Center Type 2<br/>Center 1");
+	}
+	if(element.id=="pinBahan_03_001"){
+    element.setAttribute('src', 'type3-2.png');
+		$("#eachitem").html("Quick Look<br/>Bahan: Center Type 3<br/>Center 1");
+	}
+}
+function unhover(element) {
+	$("#eachitem").html("");
+	$("#eachitem").hide();
+	if(element.id=="pinYangon"){
+    element.setAttribute('src', 'pin.png');
+	
+	}
+	if(element.id=="pinBahan"){
+    element.setAttribute('src', 'pin.png');
+	}
+	if(element.id=="pinTamwe"){
+    element.setAttribute('src', 'pin.png');
+	}
+	if(element.id=="pinYankin"){
+    element.setAttribute('src', 'pin.png');
+	}
+	
+	if(element.id=="pinBahan_01_001"){
+    element.setAttribute('src', 'type1-1.png');
+	}
+	if(element.id=="pinBahan_02_001"){
+    element.setAttribute('src', 'type2-1.png');
+	}
+	if(element.id=="pinBahan_03_001"){
+    element.setAttribute('src', 'type3-1.png');
+	}
+}
+
+function hideYangon(){
+		$("#pinBahan").hide();
+		$("#divBahan").hide();
+		$("#pinTamwe").hide();
+		$("#divTamwe").hide();
+		$("#pinYankin").hide();
+		$("#divYankin").hide();
+}
+function showYangon(){
+		$("#pinBahan").show();
+		$("#divBahan").show();
+		$("#pinTamwe").show();
+		$("#divTamwe").show();
+		$("#pinYankin").show();
+		$("#divYankin").show();
+}
+
+function hideBahanCenter(){
+		$("#pinBahan_01_001").hide();
+		$("#divBahan_01_001").hide();
+		$("#pinBahan_02_001").hide();
+		$("#divBahan_02_001").hide();
+		$("#pinBahan_03_001").hide();
+		$("#divBahan_03_001").hide();
+}
+function showBahanCenter(){
+		$("#pinBahan_01_001").show();
+		$("#divBahan_01_001").show();
+		$("#pinBahan_02_001").show();
+		$("#divBahan_02_001").show();
+		$("#pinBahan_03_001").show();
+		$("#divBahan_03_001").show();
+}
+
+
+
+function onclickthat(element) {
+    //element.setAttribute('src', '');
+	//element.remove();
+	//element.hide();
+	if(element=="pinYangon"){
+		document.getElementById("imgBackground").setAttribute('src', '01000Yangon.PNG');
+		$("#pinYangon").hide();
+		$("#divYangon").hide();
+		$("#profile").html("State Level: <br/>Yangon Data Showing...");
+		$("#textsubtitle").html("State Level : Yangon");
+		showYangon();
+		
+	}
+	if(element=="pinBahan"){
+		document.getElementById("imgBackground").setAttribute('src', '01001Bahan.PNG');
+		hideYangon();
+		$("#profile").html("Township Level: <br/>Bahan Data Showing...");
+		$("#textsubtitle").html("Township Level : Bahan");
+		showBahanCenter();
+	}
+	if(element=="pinTamwe"){
+		document.getElementById("imgBackground").setAttribute('src', '01002Tamwe.PNG');
+		$("#profile").html("Township Level: <br/>Tamwe Data Showing...");
+		$("#textsubtitle").html("Township Level : Tamwe");
+		hideYangon();
+	}
+	if(element=="pinYankin"){
+		document.getElementById("imgBackground").setAttribute('src', '01003Yankin.PNG');
+		$("#profile").html("Township Level: <br/>Yankin Data Showing...");
+			$("#textsubtitle").html("Township Level : Yankin");
+		hideYangon();
+	}
+	
+	
+	console.log(element);
+}
+function resetthis(element){
+	document.getElementById("imgBackground").setAttribute('src', '00000Myanmar.PNG');
+	$("#divYangon").show();
+	$("#pinYangon").show();
+	$("#profile").html("Profile: <br/>Country 	data Showing");
+	$("#textsubtitle").html("Myanmar (National Level)");
+	hideYangon();
+	hideBahanCenter();
+}
+</script>
+</head>
+<body>
+<h1 id="texttitle">Mid Wive Info Map</h1>
+<h2 id="textsubtitle">Myanmar (National Level)</h2>
+<img id="imgBackground" src="00000Myanmar.PNG"/>
+<div id="divYangon">Yangon</div>
+<img id="pinYangon" src="pin.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+
+<div id="divBahan">Bahan</div>
+<img id="pinBahan" src="pin.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+<div id="divBahan_01_001">Center Type 1</div>
+<img id="pinBahan_01_001" src="type1-1.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+<div id="divBahan_02_001">Center Type 2</div>
+<img id="pinBahan_02_001" src="type2-1.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+<div id="divBahan_03_001">Center Type 3</div>
+<img id="pinBahan_03_001" src="type3-1.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+
+<div id="divTamwe">Tamwe</div>
+<img id="pinTamwe" src="pin.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+<div id="divYankin">Yankin</div>
+<img id="pinYankin" src="pin.png" onmouseover="hover(this);" onmouseout="unhover(this);" onclick="onclickthat(this.id)"/>
+<script>hideYangon();</script>
+<script>hideBahanCenter();</script>
+<div id="profile2" title="Profile">
+  <p>Country data Showing</p>
+</div>
+
+
+<div id="profile">Profile: <br/>Country 	data Showing</div>
+<div id="eachitem">Quick Lookup</div>
+<script>$("#eachitem").hide();</script>
+
+<div onclick="resetthis(this)">Reset</div>
+</body>
+</html>

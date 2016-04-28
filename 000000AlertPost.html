@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Township Level - Bahan</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="jquery-1.10.2.js"></script>
+	<script src="jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<script src="leaflet.js"></script>
+	<style>
+
+	</style>
+	<script>
+		function fetchAlert() {
+			//console.log("try to get 1...");
+			$.ajax({
+				type: "post",
+				url: "http://52.201.204.236:9200/epihack/alert/_search?size=1000",
+				dataType: "json",
+				success: function(result) {
+					data = result.hits.hits;
+					renderData(data);
+
+						//console.log('res : ', res.message);
+						/*
+						var reportIcon = new LeafIcon({iconUrl: 'images/map-pin.png', iconSize: [34, 41]});
+						var ks = L.marker([res.latlng], {icon: reportIcon}).addTo(mymap).bindPopup(res.disease);
+						ks.on('click', pin2click);
+						ks.on('mouseover', function(e) {
+							this.openPopup();
+						});
+						ks.on('mouseout', function(e) {
+							this.closePopup();
+						});
+						*/
+
+				},
+				error: function() {
+					console.log('error');
+				}
+			});
+		}
+
+		function renderData(data) {
+			var result = ["<ul>"]
+			$.each(data, function(index, item){
+				 console.log("item:", item);
+				 var record = item['_source']
+         var volunteer = record["include_volunteers"] == "true" ? "Include volunteers" : "Not Include Volunteers"
+				 var temResult = "<li>" + record["message"] + "  " + volunteer +"</li>"
+				 result.push(temResult)
+			})
+			result.push("</ul>")
+			var htmlContent = result.join(" ")
+			console.log(htmlContent)
+			$("#contents").html(htmlContent)
+		}
+		fetchAlert();
+		function ajaxpost(e){
+			//var data = {'message': document.getElementById("volunteer_msg") ,'include_volunteers': document.getElementById("include_volunteers")};
+			var data = {'message': "adsfoiasdfasd" ,'include_volunteers': "true"};
+		 $.ajax({
+		   url: 'http://52.201.204.236:9200/epihack/alert/',
+		   type: 'POST',
+		   contentType:'application/json',
+		   data: JSON.stringify(data),
+		   dataType:'json',
+		   success: function(data){
+		     //On ajax success do this
+				 console.log("response: ", data);
+		      },
+		   error: function(data) {
+				 console.log("failed: ", data);
+		      //On error do this
+		        $.mobile.loading('hide')
+		        if (xhr.status == 200) {
+
+		            alert(ajaxOptions);
+		        }
+		        else {
+		            alert(xhr.status);
+		            alert(thrownError);
+		        }
+		    }
+		 });
+		}
+	</script>
+
+</head>
+
+<body>
+	<div id="container" width="1000px">
+		<form action="http://52.201.204.236:9200/epihack/alert/" method="post">
+			<input type="text" name="message" id="volunteer_msg">
+			includevolunteers ? :
+			<input type="text" name="include_volunteers" id="include_volunteers">
+			<br>
+			<br>
+			<button type="button" onclick="ajaxpost();">Post</button>
+		</form>
+		<button type="button" onclick="fetchAlert();">Get</button>
+	</div>
+</body>
+
+</html>

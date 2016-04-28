@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Township Level - Bahan</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="jquery-1.10.2.js"></script>
+	<script src="jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<script src="leaflet.js"></script>
+	<style>
+		#profile {
+			position: absolute;
+			width: 200px;
+			height: 300px;
+			left: 10px;
+			top: 80px;
+		}
+
+		#brief {
+			position: absolute;
+			width: 200px;
+			height: 300px;
+			left: 640px;
+			top: 80px;
+		}
+
+		#country {
+			position: absolute;
+			width: 80px;
+			height: 50px;
+			left: 10px;
+			top: 10px;
+		}
+
+		#state {
+			position: absolute;
+			width: 80px;
+			height: 50px;
+			left: 95px;
+			top: 10px;
+		}
+
+		#district {
+			position: absolute;
+			width: 80px;
+			height: 50px;
+			left: 180px;
+			top: 10px;
+		}
+
+		#township {
+			position: absolute;
+			width: 80px;
+			height: 50px;
+			left: 265px;
+			top: 10px;
+		}
+
+		#rhc {
+			position: absolute;
+			width: 80px;
+			height: 50px;
+			left: 350px;
+			top: 10px;
+		}
+
+		#sc {
+			position: absolute;
+			width: 80px;
+			height: 50px;
+			left: 435px;
+			top: 10px;
+		}
+
+		#mapid {
+			position: absolute;
+			width: 400px;
+			height: 400px;
+			left: 220px;
+			top: 80px;
+		}
+
+		#texttitle {
+			position: absolute;
+			left: 525px;
+			top: 10px
+		}
+
+		#textsubtitle {
+			position: absolute;
+			left: 525px;
+			top: 30px
+		}
+
+		#logout {
+			position: absolute;
+			width: 60px;
+			height: 50px;
+			left: 725px;
+			top: 10px
+		}
+		#container {
+			margin: auto;
+    	width: 100%;
+		}
+	</style>
+	<script>
+		$(function() {
+			$("#profile").accordion({
+				active: 0
+			});
+		});
+/*
+		$(function() {
+			$("#brief").accordion();
+		});*/
+		$(function() {
+			$("#country").button();
+			$("#country").click(function() { window.location = './000000Myanmar.html'; });
+			$("#state").button();
+			$("#state").click(function() { window.location = './010000Yangon.html'; });
+			$("#district").button();
+			$("#district").click(function() { window.location = './011000NorthYangon.html'; });
+			$("#township").button();
+			$("#township").click(function() { window.location = './011100Htantapin.html'; });
+			$("#logout").button();
+			$("#logout").click(function() { window.location = './index.html'; });
+		});
+	</script>
+
+</head>
+
+<body><div id="container" width="3000px">
+	<div id="texttitle" style="font-size:15px"><b>Health Directory Info Map</b></div>
+	<div id="textsubtitle" style="font-size:10px"><i>Township Level : Htantapin</i></div>
+	<div id="toolbar">
+		<button id="country">Myanmar</button>
+		<button id="state">Yangon</button>
+		<button id="district">North Yangon</button>
+		<button id="township">Htantapin</button>
+		<button id="logout">Logout</button>
+	</div>
+
+	<div id="profile">
+		<h3>Profile</h3>
+		<div>
+			<p>
+				Township Name : Htantapin
+				<br/> Focal Person : Mr. One
+				<br/> Contact Phone Number : 098765433
+				<br/><b>Instituitional Total</b>
+				<br/> Total TSH : 1
+				<br/> Total SH : 3
+				<br/> Total MCH : 1
+				<br/> Total RHC : 6
+				<br/> Total S/C : 30
+				<br/> <a href="functionality.html">Functionality</a>
+			</p>
+		</div>
+		<h3>Instituitions</h3>
+		<div>
+			<p>
+				<ui>
+					<li><a href="./intprofile.html" target="_self">Township Hospital 1</a></li>
+					<li><a href="./intprofile.html" target="_self">Station Hospital 1</a></li>
+					<li><a href="./intprofile.html" target="_self">Station Hospital 2</a></li>
+					<li><a href="./intprofile.html" target="_self">Station Hospital 3</a></li>
+					<li><a href="./intprofile.html" target="_self">Maternal and Child Health 1</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre (Tet Thit)</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre (Pan Taing)</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 3</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 4</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 5</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 6</a></li>
+				</ui>
+			</p>
+		</div>
+	</div>
+	<div id="mapid"></div>
+	<div id="brief" style="font-size:1.3em">
+		<h3>Brief</h3>
+		<div>
+				<b><div id="intName">Instituition Name : RHC</div></b>
+						<br/>
+				<b><div id="stName">State Name : Yangon</div></b>
+				<b><div id="dtName">District Name : North Yangon</div></b>
+				<b><div id="tsName">Township Name : Htantapin</div></b>
+
+				<br/><br/><b>Case Brief</b>
+				<br/> Diarrhoea Case for (2015) : 600
+				<br/> Diarrhoea Death for (2015) : 2
+				<br/><br/><b>Focal Contact</b>
+				<br/> Focal Person : Mr. One
+				<br/> Contact Phone Number : 098765433
+				<br/>
+		</div>
+	</div>
+	<script>
+		var mymap = L.map('mapid').setView([17.0018, 95.9884], 12);
+
+		var mylayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery � <a href="http://mapbox.com">Mapbox</a>',
+			id: 'mapbox.streets'
+		}).addTo(mymap);
+
+
+
+
+		function pin2click(e) {
+			console.log("Pin 2 is click...");
+
+		};
+
+		var LeafIcon = L.Icon.extend({
+			options: {
+				shadowUrl: './images/marker-shadow.png',
+				iconSize:     [16, 16],
+				shadowSize:   [16, 16],
+				iconAnchor:   [0, 0],
+				shadowAnchor: [0, 0],
+				popupAnchor:  [0, 0]
+			}
+		});
+
+		//$("#brief").hide();
+		var tshIcon = new LeafIcon({iconUrl: './images/tshIcon.png'});
+		var shIcon = new LeafIcon({iconUrl: './images/shIcon.png'});
+		var mchIcon = new LeafIcon({iconUrl: './images/mchIcon.png'});
+		var rhcIcon = new LeafIcon({iconUrl: './images/rhcIcon.png'});
+		L.icon = function (options) {
+		    return new L.Icon(options);
+		};
+		//16.99261, 95.97897 TSH1
+		var tsh1 = L.marker([16.99261, 95.97897], {icon: tshIcon}).addTo(mymap).bindPopup("TSH1");
+		tsh1.on('click', pin2click);
+		tsh1.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : TSH1");
+			$("#brief").show();
+		});
+		tsh1.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//tsh1.valueOf()._icon.style.backgroundColor = 'green';
+		//17.0105, 95.94584 SH1
+		var sh1 = L.marker([17.00656, 95.96283], {icon: shIcon}).addTo(mymap).bindPopup("SH1");
+		sh1.on('click', pin2click);
+		sh1.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : SH1");
+			$("#brief").show();
+		});
+		sh1.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.99146, 96.00351 SH2
+		var sh2 = L.marker([16.99146, 96.00351], {icon: shIcon}).addTo(mymap).bindPopup("SH2");
+		sh2.on('click', pin2click);
+		sh2.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : SH2");
+			$("#brief").show();
+		});
+		sh2.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.97258, 95.9745 SH3
+		var sh3 = L.marker([16.97258, 95.9745], {icon: shIcon}).addTo(mymap).bindPopup("SH3");
+		sh3.on('click', pin2click);
+		sh3.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : SH3");
+			$("#brief").show();
+		});
+		sh3.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.99195, 95.95013 MCH1
+		var mch1 = L.marker([16.99195, 95.95013], {icon: mchIcon}).addTo(mymap).bindPopup("MCH1");
+		mch1.on('click', pin2click);
+		mch1.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : MCH1");
+			$("#brief").show();
+		});
+		mch1.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.99031, 95.99785 RHC1
+		var rhc1 = L.marker([16.98292, 95.99613], {icon: rhcIcon}).addTo(mymap).bindPopup("RHC (Tet Thit)");
+		function clickYangon(e) {
+			window.location = './011110rhctetthit.html';
+		};
+		rhc1.on('click', clickYangon);
+		rhc1.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : RHC (Tet Thit)");
+			$("#brief").show();
+		});
+		rhc1.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.97931, 95.94687 RHC2
+		var rhc2 = L.marker([16.97931, 95.94687], {icon: rhcIcon}).addTo(mymap).bindPopup("RHC (Pan Taing)");
+		rhc2.on('click', pin2click);
+		rhc2.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : RHC (Pan Taing)");
+			$("#brief").show();
+		});
+		rhc2.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.99556, 95.99665 RHC3
+		var rhc3 = L.marker([16.99556, 95.99665], {icon: rhcIcon}).addTo(mymap).bindPopup("RHC3");
+		rhc3.on('click', pin2click);
+		rhc3.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : RHC3");
+			$("#brief").show();
+		});
+		rhc3.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//17.01231, 95.94669 RHC4
+		var rhc4 = L.marker([17.01231, 95.94669], {icon: rhcIcon}).addTo(mymap).bindPopup("RHC4");
+		rhc4.on('click', pin2click);
+		rhc4.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : RHC4");
+			$("#brief").show();
+		});
+		rhc4.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//17.00459, 95.99974 RHC5
+		var rhc5 = L.marker([17.00459, 95.99974], {icon: rhcIcon}).addTo(mymap).bindPopup("RHC5");
+		rhc5.on('click', pin2click);
+		rhc5.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : RHC5");
+			$("#brief").show();
+		});
+		rhc5.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		//16.96535, 95.99768 RHC6
+		var rhc6 = L.marker([16.96535, 95.99768], {icon: rhcIcon}).addTo(mymap).bindPopup("RHC6");
+		rhc6.on('click', pin2click);
+		rhc6.on('mouseover', function(e) {
+			this.openPopup();
+			$("#intName").html("Instituition Name : RHC6");
+			$("#brief").show();
+		});
+		rhc6.on('mouseout', function(e) {
+			this.closePopup();
+			$("#brief").hide();
+		});
+		/*
+				var pinYangon = L.marker([16.81, 96.16]).addTo(mymap).bindPopup("Yangon");
+				pinYangon.on('click', pin2click);
+				pinYangon.on('mouseover', function(e) {
+					this.openPopup();
+				});
+				pinYangon.on('mouseout', function(e) {
+					this.closePopup();
+				});
+
+				var pinBago = L.marker([18.41, 95.87]).addTo(mymap).bindPopup("Bago");
+				pinBago.on('click', pin2click);
+				pinBago.on('mouseover', function(e) {
+					this.openPopup();
+				});
+				pinBago.on('mouseout', function(e) {
+					this.closePopup();
+				});
+
+				var pinAyarwaddy = L.marker([16.84661, 95.11963]).addTo(mymap).bindPopup("Ayarwaddy");
+				pinAyarwaddy.on('click', pin2click);
+				pinAyarwaddy.on('mouseover', function(e) {
+					this.openPopup();
+				});
+				pinAyarwaddy.on('mouseout', function(e) {
+					this.closePopup();
+				});
+
+		mymap.on('zoomend', function() {
+			console.log(mymap.getZoom());
+			if (mymap.getZoom() > 9 && mymap.hasLayer(mylayer)) {
+				mymap.removeLayer(mylayer);
+			}
+			if (mymap.getZoom() < 9 && mymap.hasLayer(mylayer) == false) {
+				mymap.addLayer(mylayer);
+			}
+		});	*/
+
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(mymap);
+		}
+
+		mymap.on('click', onMapClick);
+	</script>
+</div>
+</body>
+
+</html>

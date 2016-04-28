@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Township Level - Bahan</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.jqueryui.min.css">
+
+	<script src="jquery-1.10.2.js"></script>
+	<script src="jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/dataTables.jqueryui.min.js"></script>
+	<script src="leaflet.js"></script>
+	<style>
+	#profile {
+		position: absolute;
+		width: 200px;
+		height: 300px;
+		left: 10px;
+		top: 80px;
+	}
+
+	#brief {
+		position: absolute;
+		width: 200px;
+		height: 300px;
+		left: 640px;
+		top: 80px;
+	}
+
+	#country {
+		position: absolute;
+		width: 80px;
+		height: 50px;
+		left: 10px;
+		top: 10px;
+	}
+
+	#state {
+		position: absolute;
+		width: 80px;
+		height: 50px;
+		left: 95px;
+		top: 10px;
+	}
+
+	#district {
+		position: absolute;
+		width: 80px;
+		height: 50px;
+		left: 180px;
+		top: 10px;
+	}
+
+	#township {
+		position: absolute;
+		width: 80px;
+		height: 50px;
+		left: 265px;
+		top: 10px;
+	}
+
+	#rhc {
+		position: absolute;
+		width: 80px;
+		height: 50px;
+		left: 350px;
+		top: 10px;
+	}
+
+	#sc {
+		position: absolute;
+		width: 80px;
+		height: 50px;
+		left: 435px;
+		top: 10px;
+	}
+
+	#mapid {
+		position: absolute;
+		width: auto;
+		height: auto;
+		left: 220px;
+		top: 80px;
+	}
+
+	#texttitle {
+		position: absolute;
+		left: 525px;
+		top: 10px
+	}
+
+	#textsubtitle {
+		position: absolute;
+		left: 525px;
+		top: 30px
+	}
+
+	#logout {
+		position: absolute;
+		width: 60px;
+		height: 50px;
+		left: 725px;
+		top: 10px
+	}
+	</style>
+	<script>
+		$(function() {
+			$("#profile").accordion();
+		});
+		$(function() {
+			$("#brief").accordion();
+		});
+		$(function() {
+
+      $('.other-contact').DataTable({
+					"bPaginate": false,
+					bInfo: false,
+					"sDom": 'lfrtip',
+					"bFilter": false
+				});
+		});
+	</script>
+
+</head>
+
+<body>
+	<div id="texttitle" style="font-size:15px"><b>Health Directory Info Map</b></div>
+	<div id="textsubtitle" style="font-size:10px"><i>Township Level : Htantapin</i></div>
+	<div id="toolbar">
+		<button id="country" onclick="location.href = './000000Myanmar.html';">Myanmar</button>
+		<button id="state" onclick="location.href = './010000Yangon.html';">Yangon</button>
+		<button id="district" onclick="location.href = './011000NorthYangon.html';">North Yangon</button>
+		<button id="township" onclick="location.href = './011100Htantapin.html'">Htantapin</button>
+		<button id="logout" onclick="location.href = './index.html';">Logout</button>
+	</div>
+	<div id="profile">
+		<h3>Profile</h3>
+		<div>
+			<p>
+				Township Name : Bahan
+				<br/> Focal Person : Mr. One
+				<br/> Contact Phone Number : 098765433
+				<br/> Total TSH : XX
+				<br/> Total PSH : XX
+				<br/> Total RHC : XX
+				<br/> Total S/C : XX
+			</p>
+		</div>
+		<h3>Instituitions</h3>
+		<div>
+			<p>
+				<ui>
+					<li><a href="./intprofile.html" target="_self">Township Hospital 1</a></li>
+					<li><a href="./intprofile.html" target="_self">Station Hospital 1</a></li>
+					<li><a href="./intprofile.html" target="_self">Station Hospital 2</a></li>
+					<li><a href="./intprofile.html" target="_self">Station Hospital 3</a></li>
+					<li><a href="./intprofile.html" target="_self">Maternal and Child Health 1</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre (Tet Thit)</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre (Pan Taing)</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 3</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 4</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 5</a></li>
+					<li><a href="./intprofile.html" target="_self">Rural Health Centre 6</a></li>
+				</ui>
+			</p>
+		</div>
+	</div>
+	<div id="mapid" class="ui-corner-all ui-widget ui-widget-content" >
+		<table style='width: 100%;'>
+			<tr>
+				<td>Name</td>
+				<td>Thit Thit </td>
+			</tr>
+			<tr>
+				<td>Type</td>
+				<td>RHC</td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td>Yangon</td>
+			</tr>
+			<tr>
+				<td>Township</td>
+				<td>Htan Ta Bin</td>
+			</tr>
+			<tr>
+				<td>Focal person name</td>
+				<td>Dr. Htay Win</td>
+			</tr>
+			<tr>
+				<td>Focal person phone number</td>
+				<td>0945004538</td>
+			</tr>
+			<tr>
+				<td>Focal person position</td>
+				<td>Health assistant</td>
+			</tr>
+			<tr>
+				<td>Other contact</td>
+				<td width="600px">
+					<table class="other-contact display cell-border row-border" style="border: 1px solid #ddd" cellspacing="0">
+			      <thead>
+			        <tr>
+			          <th>Name</th>
+			          <th>Rank</th>
+			          <th>Phone Number</th>
+			        </tr>
+			      </thead>
+
+			      <tbody>
+			        <tr>
+			          <td>D. Kyu Kyu Thin</td>
+			          <td>Lady Health Visitor</td>
+			          <td>09 4500 3937</td>
+			        </tr>
+			        <tr>
+			          <td>Dr. Le Le Khaing</td>
+			          <td>Midwife</td>
+			          <td>09 45001613</td>
+			        </tr>
+			        <tr>
+			          <td>Dr. Zarchi Win</td>
+			          <td>Midwife</td>
+			          <td>09 451236177</td>
+			        </tr>
+			      </tbody>
+			    </table>
+				</td>
+			</tr>
+			</tr>
+				<td>Population Male/Female</td>
+				<td width="600px">
+					<table class="other-contact display cell-border row-border" style="border: 1px solid #ddd" cellspacing="0">
+			      <tbody>
+			        <tr>
+			          <td style="width: 50%">Population total</td>
+			          <td>36080</td>
+			        </tr>
+			        <tr>
+			          <td>Male</td>
+			          <td>15800</td>
+							</tr>
+							<tr>
+			          <td>Female</td>
+			          <td>20280</td>
+							</tr>
+			      </tbody>
+			    </table>
+				</td>
+			</tr>
+			</tr>
+				<td>Population Male/Female</td>
+				<td width="600px">
+					<table class="other-contact display cell-border row-border dataTable" style="border: 1px solid #ddd" cellspacing="0">
+			      <tbody>
+			        <tr>
+			          <td style="width: 50%"> < 1</td>
+			          <td>788</td>
+			        </tr>
+			        <tr>
+			          <td style="width: 50%"> < 5</td>
+			          <td>5011</td>
+							</tr>
+							<tr>
+			          <td style="width: 50%"> <15 </td>
+			          <td>9700</td>
+							</tr>
+							<tr>
+			          <td style="width: 50%"> Pregnant Woman </td>
+			          <td> 801 </td>
+							</tr>
+							<tr>
+			          <td style="width: 50%"> WCBA </td>
+			          <td> 1108 </td>
+							</tr>
+			      </tbody>
+			    </table>
+				</td>
+			</tr>
+		</table>
+  </div>
+</body>
+</html>
